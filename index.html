@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Misbahuddin Mohammed — Python Developer, AI/ML</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0F1115;
+    --bg-raised: #171A20;
+    --bg-card: #1A1D23;
+    --line: #2A2E36;
+    --text: #F1F2F4;
+    --text-dim: #9AA0AB;
+    --text-faint: #656B76;
+    --accent: #5CAE9F;
+    --accent-dim: #3E7A70;
+    --serif: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', -apple-system, Segoe UI, Roboto, sans-serif;
+    --mono: 'IBM Plex Mono', SFMono-Regular, Menlo, monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg: #0F1115; --bg-raised: #171A20; --bg-card: #1A1D23;
+      --line: #2A2E36; --text: #F1F2F4; --text-dim: #9AA0AB; --text-faint: #656B76;
+      --accent: #5CAE9F; --accent-dim: #3E7A70;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg: #0F1115; --bg-raised: #171A20; --bg-card: #1A1D23;
+    --line: #2A2E36; --text: #F1F2F4; --text-dim: #9AA0AB; --text-faint: #656B76;
+    --accent: #5CAE9F; --accent-dim: #3E7A70;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  ::selection{background:var(--accent-dim); color:#fff;}
+  :focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:20;
+    background:rgba(15,17,21,0.86);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:920px; margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-name{
+    font-family:var(--mono); font-size:13px; letter-spacing:0.02em;
+    color:var(--text-dim);
+  }
+  .nav-links{ display:flex; gap:24px; list-style:none; margin:0; padding:0; }
+  .nav-links a{
+    font-size:14px; text-decoration:none; color:var(--text-dim);
+    transition:color .15s ease;
+  }
+  .nav-links a:hover{ color:var(--accent); }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    padding:96px 0 72px;
+    position:relative;
+  }
+  .hero-eyebrow{
+    font-family:var(--mono);
+    font-size:14px;
+    color:var(--accent);
+    margin:0 0 18px;
+  }
+  .hero h1{
+    font-family:var(--serif);
+    font-weight:500;
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.08;
+    margin:0 0 22px;
+    max-width:11ch;
+  }
+  .hero p.lede{
+    font-size:1.15rem;
+    color:var(--text-dim);
+    max-width:56ch;
+    margin:0 0 32px;
+  }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:10px 22px;
+    font-family:var(--mono); font-size:13px; color:var(--text-faint);
+  }
+  .hero-meta a{ text-decoration:none; color:var(--text-faint); border-bottom:1px solid transparent; }
+  .hero-meta a:hover{ color:var(--accent); border-color:var(--accent); }
+
+  .hero-diagram{
+    margin-top:56px;
+    border:1px solid var(--line);
+    border-radius:4px;
+    background:var(--bg-raised);
+    padding:22px 24px;
+    overflow-x:auto;
+  }
+  .hero-diagram svg{ display:block; min-width:640px; width:100%; height:auto; }
+
+  /* ---------- Section shell ---------- */
+  section{ padding:64px 0; border-top:1px solid var(--line); }
+  .section-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    margin-bottom:36px; gap:16px; flex-wrap:wrap;
+  }
+  .section-head h2{
+    font-family:var(--serif); font-weight:500;
+    font-size:1.7rem; margin:0;
+  }
+  .section-head .count{ font-family:var(--mono); font-size:13px; color:var(--text-faint); }
+
+  /* ---------- Experience (real sequence -> timeline) ---------- */
+  .timeline{ position:relative; }
+  .job{
+    display:grid;
+    grid-template-columns:130px 1fr;
+    gap:24px;
+    padding:26px 0;
+    border-top:1px solid var(--line);
+  }
+  .job:first-child{ border-top:none; padding-top:0; }
+  .job-date{
+    font-family:var(--mono); font-size:13px; color:var(--text-faint);
+    padding-top:3px;
+  }
+  .job-role{ font-size:1.05rem; font-weight:600; margin:0 0 2px; }
+  .job-org{ color:var(--accent); font-size:0.95rem; margin:0 0 14px; }
+  .job ul{ margin:0; padding-left:18px; color:var(--text-dim); }
+  .job li{ margin-bottom:7px; }
+  @media (max-width:640px){
+    .job{ grid-template-columns:1fr; gap:8px; }
+  }
+
+  /* ---------- Projects ---------- */
+  .project{
+    padding:40px 0;
+    border-top:1px solid var(--line);
+    display:grid;
+    grid-template-columns:1fr;
+    gap:18px;
+  }
+  .project:first-child{ border-top:none; padding-top:0; }
+  .project-index{ font-family:var(--mono); font-size:13px; color:var(--text-faint); }
+  .project h3{
+    font-family:var(--serif); font-weight:500; font-size:1.5rem; margin:6px 0 10px;
+  }
+  .project .role{ color:var(--text-dim); margin:0 0 14px; max-width:64ch; }
+  .stack{ display:flex; flex-wrap:wrap; gap:8px; margin:0 0 18px; }
+  .stack span{
+    font-family:var(--mono); font-size:12px; color:var(--accent);
+    border:1px solid var(--accent-dim); border-radius:3px;
+    padding:3px 9px;
+  }
+  .capabilities{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+    gap:8px 20px; margin:0; padding:0; list-style:none;
+  }
+  .capabilities li{
+    font-size:0.92rem; color:var(--text-dim);
+    padding-left:16px; position:relative;
+  }
+  .capabilities li::before{
+    content:"—"; position:absolute; left:0; color:var(--text-faint);
+  }
+  .project-quote{
+    font-family:var(--serif); font-style:italic; font-size:1.05rem;
+    color:var(--text); border-left:2px solid var(--accent);
+    padding:4px 0 4px 18px; margin:18px 0 0; max-width:52ch;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(230px, 1fr));
+    gap:28px 32px;
+  }
+  .skill-group h4{
+    font-family:var(--mono); font-size:12.5px; text-transform:none;
+    color:var(--text-faint); margin:0 0 12px; font-weight:500;
+  }
+  .skill-group p{ margin:0; color:var(--text); font-size:0.95rem; line-height:1.7; }
+
+  /* ---------- Education ---------- */
+  .edu{ display:grid; gap:20px; }
+  .edu-item{ display:grid; grid-template-columns:130px 1fr; gap:24px; }
+  .edu-item .job-date{ padding-top:1px; }
+  .edu-item h4{ margin:0 0 3px; font-size:1rem; font-weight:600; }
+  .edu-item p{ margin:0; color:var(--text-dim); font-size:0.92rem; }
+  @media (max-width:640px){ .edu-item{ grid-template-columns:1fr; gap:6px; } }
+
+  /* ---------- Contact / footer ---------- */
+  footer{
+    border-top:1px solid var(--line);
+    padding:64px 0 48px;
+  }
+  footer h2{
+    font-family:var(--serif); font-weight:500; font-size:1.9rem; margin:0 0 16px;
+    max-width:16ch;
+  }
+  .contact-links{
+    display:flex; flex-wrap:wrap; gap:14px 28px; margin-top:26px;
+  }
+  .contact-links a{
+    font-family:var(--mono); font-size:14px; text-decoration:none;
+    color:var(--text); border-bottom:1px solid var(--line);
+    padding-bottom:2px; transition:border-color .15s ease, color .15s ease;
+  }
+  .contact-links a:hover{ color:var(--accent); border-color:var(--accent); }
+  .foot-note{ margin-top:48px; font-size:13px; color:var(--text-faint); }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <span class="nav-name">MISBAHUDDIN MOHAMMED</span>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" style="border-top:none;">
+    <p class="hero-eyebrow">Python Developer, AI/ML</p>
+    <h1>Systems that hold up under real load.</h1>
+    <p class="lede">
+      I build production AI systems and the infrastructure underneath them — from
+      Kubernetes platforms and cloud-native pipelines to LLM-based tools that
+      diagnose, design, and audit software systems before they break.
+    </p>
+    <div class="hero-meta">
+      <span>Farmington Hills, Michigan</span>
+      <a href="mailto:misbahuddin.9903@gmail.com">misbahuddin.9903@gmail.com</a>
+      <a href="tel:+13137210022">313-721-0022</a>
+    </div>
+
+    <div class="hero-diagram" aria-hidden="true">
+      <svg viewBox="0 0 640 140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#3E7A70"/>
+          </marker>
+        </defs>
+        <g fill="none" stroke="#2A2E36" stroke-width="1">
+          <rect x="14" y="46" width="120" height="48" rx="3" stroke="#3E7A70"/>
+          <rect x="190" y="12" width="130" height="48" rx="3" stroke="#3E7A70"/>
+          <rect x="190" y="80" width="130" height="48" rx="3" stroke="#3E7A70"/>
+          <rect x="376" y="46" width="120" height="48" rx="3" stroke="#3E7A70"/>
+          <rect x="536" y="46" width="90" height="48" rx="3" stroke="#3E7A70"/>
+        </g>
+        <g stroke="#3E7A70" stroke-width="1" marker-end="url(#arrow)">
+          <line x1="134" y1="70" x2="186" y2="36"/>
+          <line x1="134" y1="70" x2="186" y2="104"/>
+          <line x1="320" y1="36" x2="372" y2="66"/>
+          <line x1="320" y1="104" x2="372" y2="74"/>
+          <line x1="496" y1="70" x2="532" y2="70"/>
+        </g>
+        <g font-family="IBM Plex Mono, monospace" font-size="11" fill="#9AA0AB">
+          <text x="26" y="74">requirements</text>
+          <text x="202" y="40">architecture</text>
+          <text x="216" y="108">audit / eval</text>
+          <text x="392" y="74">analysis</text>
+          <text x="552" y="74">report</text>
+        </g>
+      </svg>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="section-head">
+      <h2>Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="job">
+        <div class="job-date">11/2024 — Current</div>
+        <div>
+          <p class="job-role">System Administrator</p>
+          <p class="job-org">Fannie Mae · Farmington Hills, Michigan</p>
+          <ul>
+            <li>Manage server configuration, performance, and security across multiple production applications.</li>
+            <li>Administer user accounts and permissions, and lead troubleshooting for application and infrastructure issues.</li>
+            <li>Coordinate software updates and patch deployment across teams, with documented processes for backup and data recovery.</li>
+            <li>Own storage management, data migration, and drive replacement for critical systems.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <div class="job-date">03/2020 — 05/2022</div>
+        <div>
+          <p class="job-role">Software Developer</p>
+          <p class="job-org">Emvigo Technologies</p>
+          <ul>
+            <li>Built and maintained full-stack applications with Angular, Spring Boot, React.js, and Node.js — improving user engagement by 25%.</li>
+            <li>Designed REST and SOAP/WSDL APIs for a microservices architecture, cutting integration latency by 30%.</li>
+            <li>Optimized MySQL and MongoDB queries, reducing query execution time by 40%.</li>
+            <li>Containerized services with Docker and deployed to AWS and virtualized Linux environments (Hyper-V).</li>
+            <li>Delivered internal order-management, revenue-reporting, and production-tracking systems using Agile/Scrum.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="section-head">
+      <h2>Projects</h2>
+      <span class="count">03</span>
+    </div>
+
+    <div class="project">
+      <span class="project-index">01 / Currently building</span>
+      <h3>AI System Architect</h3>
+      <p class="role">
+        An AI-powered system design platform that acts as a principal architect —
+        turning natural-language requirements into complete system architectures,
+        diagrams, API and database designs, scalability analysis, and cost estimates
+        before a single line of code is written. Where a coding assistant focuses on
+        implementation, this focuses on reasoning about the system itself: users can
+        challenge a design, change scale assumptions, and have the AI surface
+        bottlenecks, single points of failure, and security trade-offs automatically.
+      </p>
+      <div class="stack">
+        <span>System Design</span><span>LLM Reasoning</span><span>Architecture Diagrams</span><span>Cost Modeling</span>
+      </div>
+      <ul class="capabilities">
+        <li>AI-generated system architecture</li>
+        <li>Interactive architecture &amp; data-flow diagrams</li>
+        <li>"Challenge My Design" review mode</li>
+        <li>Scalability, latency &amp; bottleneck analysis</li>
+        <li>Infrastructure cost estimation</li>
+        <li>Database &amp; API design</li>
+        <li>Security &amp; reliability analysis</li>
+        <li>Requirement-change impact analysis</li>
+        <li>Architecture-to-code generation</li>
+        <li>GitHub / codebase architecture analysis</li>
+      </ul>
+      <p class="project-quote">"Cursor writes the code. AI System Architect designs the system."</p>
+    </div>
+
+    <div class="project">
+      <span class="project-index">02 / Consulting offering</span>
+      <h3>K8s Health Checker</h3>
+      <p class="role">
+        A Kubernetes cluster auditing CLI, built from scratch, that produces a scored,
+        dark-themed HTML health report covering resource utilization, availability,
+        and security best practices across nine distinct checks. Designed as a
+        productized diagnostic — mid-size engineering teams get an actionable audit
+        without committing to a long-term contract. Includes a demo mode with
+        synthetic cluster data for sales conversations.
+      </p>
+      <div class="stack">
+        <span>Python</span><span>Kubernetes Client</span><span>Jinja2</span><span>Scored Reporting</span>
+      </div>
+    </div>
+
+    <div class="project">
+      <span class="project-index">03 / Consumer app</span>
+      <h3>MicroPitch</h3>
+      <p class="role">
+        An AI-powered mobile app that helps entrepreneurs validate business ideas
+        through automated analysis and structured feedback, rather than guesswork.
+        Built end-to-end with subscription billing and backend infrastructure to
+        support real users.
+      </p>
+      <div class="stack">
+        <span>React Native / Expo</span><span>Stripe</span><span>Firebase</span><span>Railway</span>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head">
+      <h2>Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>AI &amp; Machine Learning</h4>
+        <p>LLM/GenAI application development, RAG pipelines, AI agents, applied ML, system design reasoning</p>
+      </div>
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <p>Python, Java, JavaScript, TypeScript (basic), C, C++, SQL, HTML, CSS</p>
+      </div>
+      <div class="skill-group">
+        <h4>Frameworks &amp; Libraries</h4>
+        <p>Django, NumPy, Pandas, Scikit-Learn, Matplotlib, React.js, Node.js, Angular, Spring Boot</p>
+      </div>
+      <div class="skill-group">
+        <h4>Cloud &amp; Infrastructure</h4>
+        <p>Azure, AWS, Docker, Kubernetes, Linux administration, CI/CD, Git/GitHub</p>
+      </div>
+      <div class="skill-group">
+        <h4>Data</h4>
+        <p>MySQL, PostgreSQL, MongoDB, ETL, query optimization, Tableau, Power BI, Seaborn, Plotly</p>
+      </div>
+      <div class="skill-group">
+        <h4>Practices</h4>
+        <p>Agile/Scrum, test-driven development, technical documentation, cross-functional collaboration</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head">
+      <h2>Education</h2>
+    </div>
+    <div class="edu">
+      <div class="edu-item">
+        <div class="job-date">05/2024</div>
+        <div>
+          <h4>MS in Information Studies</h4>
+          <p>Trine University, USA</p>
+        </div>
+      </div>
+      <div class="edu-item">
+        <div class="job-date">08/2020</div>
+        <div>
+          <h4>Bachelor's in Computer Science</h4>
+          <p>JNTUH, India</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <h2>Let's talk about what you're building.</h2>
+    <div class="contact-links">
+      <a href="mailto:misbahuddin.9903@gmail.com">misbahuddin.9903@gmail.com</a>
+      <a href="tel:+13137210022">313-721-0022</a>
+      <span style="font-family:var(--mono); font-size:14px; color:var(--text-faint);">Farmington Hills, Michigan</span>
+    </div>
+    <p class="foot-note">Misbahuddin Mohammed — Python Developer, AI/ML</p>
+  </div>
+</footer>
+
+</body>
+</html>
